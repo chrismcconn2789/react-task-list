@@ -12,7 +12,10 @@ const TaskList = ({
   onDeleteTask: (taskId: string) => void;
 }) => {
   return (
-    <div className="w-full flex flex-col bg-[#18181C] rounded-xl p-8 gap-2">
+    <section
+      className="w-full flex flex-col gap-2 rounded-xl bg-card p-8"
+      aria-label="Task list"
+    >
       <EmptyTasks tasks={tasks} />
       {tasks.map((task: Task) => (
         <TaskCard
@@ -22,7 +25,7 @@ const TaskList = ({
           onDeleteTask={onDeleteTask}
         />
       ))}
-    </div>
+    </section>
   );
 };
 

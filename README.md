@@ -11,6 +11,7 @@ A simple todo list application built using React and Vite, styled using Tailwind
 #### Live Demo & Blog Article
 
 [Live Demo](https://react-task-list.chrismcconnell.dev)
+
 [Comparison Blog](https://chrismcconnell.dev/blog/react-vs-angular-2024)
 
 #### List of packages used
@@ -23,5 +24,5 @@ A simple todo list application built using React and Vite, styled using Tailwind
 - react
 - react-dom
 - tailwind-merge
-- tailwindxss-animate
+- tailwindcss-animate
 - uuid

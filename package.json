@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "test": "vitest run",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -15,6 +16,8 @@
     "@radix-ui/react-toast": "^1.1.5",
     "@types/uuid": "^9.0.8",
     "akar-icons": "^1.9.31",
+    "baseline-browser-mapping": "^2.10.23",
+    "caniuse-lite": "^1.0.30001791",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.368.0",

@@ -5,13 +5,28 @@ const Footer = () => {
   return (
     <div className="mb-4 flex flex-col gap-4 items-center">
       <div className="flex flex-row gap-4">
-        <a href="https://github.com/chrismcconn2789">
+        <a
+          href="https://github.com/chrismcconn2789"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="GitHub profile"
+        >
           <GithubFill strokeWidth={2} size={24} />
         </a>
-        <a href="https://linkedin.com/in/cmcconnell89">
+        <a
+          href="https://linkedin.com/in/cmcconnell89"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="LinkedIn profile"
+        >
           <LinkedinBoxFill strokeWidth={2} size={24} />
         </a>
-        <a href="https://chrismcconnell.dev">
+        <a
+          href="https://chrismcconnell.dev"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Personal website"
+        >
           <Globe strokeWidth={2} size={24} />
         </a>
       </div>

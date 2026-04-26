@@ -1,5 +1,5 @@
 import { CircleCheck, Info, ReactFill, TrashCan } from "akar-icons";
-import { ReactElement } from "react";
+import { useEffect, useRef } from "react";
 import Footer from "./components/Footer";
 import { addTask, deleteTask, updateTask } from "./components/TaskActions";
 import TaskBadges from "./components/TaskBadges";
@@ -12,39 +12,45 @@ import { Task } from "./types/task";
 
 function App() {
   const [tasks, setTasks] = useLocalStorage<Task[]>("tasks", []);
-
   const { toast } = useToast();
+  const wereAllTasksCompleted = useRef(false);
+  const completedTaskCount = tasks.filter((task) => task.completed).length;
+  const areAllTasksCompleted = tasks.length > 0 && completedTaskCount === tasks.length;
 
   const handleAddTask = (taskText: string) =>
-    addTask(taskText, tasks, setTasks, (message: string) => {
+    addTask(taskText, setTasks, (message: string) => {
       toast({
         title: (
           <div className="flex flex-row gap-2 items-center">
             <Info strokeWidth={2} size={16} className="text-cyan-300" />
             <span className="text-gray-100">Task Added</span>
           </div>
-        ) as string & ReactElement,
+        ),
         description: `${message}`,
         duration: 1500,
       });
     });
 
   const handleDeleteTask = (taskId: string) =>
-    deleteTask(taskId, tasks, setTasks, (message: string) => {
+    deleteTask(taskId, setTasks, (message: string) => {
       toast({
         title: (
           <div className="flex flex-row gap-2 items-center">
             <TrashCan strokeWidth={2} size={16} className="text-red-500" />
             <span className="text-gray-100">Task Removed</span>
           </div>
-        ) as string & ReactElement,
+        ),
         description: `${message}`,
         duration: 1500,
       });
     });
+
   const handleUpdateTask = (taskId: string) => {
-    updateTask(taskId, tasks, setTasks);
-    if (tasks.every((task) => task.completed)) {
+    updateTask(taskId, setTasks);
+  };
+
+  useEffect(() => {
+    if (areAllTasksCompleted && !wereAllTasksCompleted.current) {
       toast({
         title: (
           <div className="flex flex-row gap-2 items-center">
@@ -53,11 +59,13 @@ function App() {
               All tasks completed
             </span>
           </div>
-        ) as string & ReactElement,
+        ),
         duration: 1500,
       });
     }
-  };
+
+    wereAllTasksCompleted.current = areAllTasksCompleted;
+  }, [areAllTasksCompleted, toast]);
 
   return (
     <div className="dark font-deca max-w-4xl m-auto flex flex-col items-center justify-center p-2 gap-4 md:gap-8">
